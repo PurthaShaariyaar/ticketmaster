@@ -3,7 +3,8 @@
  * Create interfaces: Attrs, Doc, Model
  * Assign const Schema = new mongoose.Schema -> toJSON
  * Initiate a pre check for password and hash the password
- * Call build method
+ * Call build method -> return a new User Doc
+ * Assign User as a mongoose.model and export User
  */
 import mongoose from "mongoose";
 import { Password } from "../services/password";
