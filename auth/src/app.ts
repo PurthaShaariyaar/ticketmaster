@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError } from '@psticketmaster/common';
 
 import { signupRouter } from './routes/signup';
+import { signinRouter } from './routes/signin';
 
 const app = express();
 app.set('trust proxy', true);
@@ -17,6 +18,8 @@ app.use(
 );
 
 app.use(signupRouter);
+app.use(signinRouter);
+
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
