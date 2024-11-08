@@ -16,6 +16,8 @@ spec:
         - name: authtm
           image: purthas/authtm
           env:
+            - name: MONGO_URI
+              value: 'mongodb://authtm-mongo-srv:27017/authtm'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
