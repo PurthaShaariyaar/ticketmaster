@@ -1,3 +1,12 @@
+/**
+ * Import dependencies
+ * Declare a global signin() easy to use for signup and signin purposes
+ * Assign mongo as any
+ * setup beforeAll: connect to mongoose db
+ * setup beforeEach: clear out databases
+ * setup afterAll: close connection to mongoose db
+ * develop method for signin
+ */
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import { app } from '../app';
