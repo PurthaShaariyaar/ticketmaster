@@ -6,6 +6,7 @@ import { errorHandler, NotFoundError } from '@psticketmaster/common';
 
 import { signupRouter } from './routes/signup';
 import { signinRouter } from './routes/signin';
+import { currentUserRouter } from './routes/current-user';
 
 const app = express();
 app.set('trust proxy', true);
@@ -19,6 +20,7 @@ app.use(
 
 app.use(signupRouter);
 app.use(signinRouter);
+app.use(currentUserRouter);
 
 
 app.all('*', async (req, res) => {
