@@ -1,6 +1,9 @@
 /**
  * Import dependencies: express, jwt, common
  * Initiate router
+ * Router.get an api, ensure the middleware currentUser is passed in
+ * Return a response with either the currentUser from request, or null
+ * Export router as currentUserRouter
  */
 
 import express from 'express';
