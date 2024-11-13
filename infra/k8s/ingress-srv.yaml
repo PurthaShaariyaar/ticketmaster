@@ -17,3 +17,10 @@ spec:
                 name: authtm-srv
                 port:
                   number: 4000
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: clienttm-srv
+                port:
+                  number: 3000

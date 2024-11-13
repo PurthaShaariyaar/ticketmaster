@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clienttm-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clienttm
+  template:
+    metadata:
+      labels:
+        app: clienttm
+    spec:
+      containers:
+        - name: clienttm
+          image: purthas/clienttm
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clienttm-srv
+spec:
+  selector:
+    app: clienttm
+  ports:
+    - name: clienttm
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
