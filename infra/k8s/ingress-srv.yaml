@@ -17,6 +17,13 @@ spec:
                 name: authtm-srv
                 port:
                   number: 4000
+          - path: /api/tickets/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: ticketstm-srv
+                port:
+                  number: 4001
           - path: /?(.*)
             pathType: Prefix
             backend:
