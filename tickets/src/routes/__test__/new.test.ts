@@ -78,7 +78,7 @@ describe('Input validation: unit tests', () => {
     const price = 10;
 
     await request(app)
-      .post('api/tickets')
+      .post('/api/tickets')
       .set('Cookie', global.signin())
       .send({
         title, price
