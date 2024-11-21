@@ -19,6 +19,8 @@ declare global {
   var signin: () => string[];
 }
 
+jest.mock('../nats-wrapper.ts');
+
 let mongo: any;
 
 beforeAll(async () => {
