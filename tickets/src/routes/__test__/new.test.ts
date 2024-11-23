@@ -92,8 +92,8 @@ describe('Input validation: unit tests', () => {
   });
 });
 
-describe('Event handlers: system tests', () => {
-  it('Publishes a ticket:created event when a ticket is created.', async () => {
+describe('Trigger events: system tests', () => {
+  it('Publishes a ticket:created event when a ticket is successfully created.', async () => {
     const title = 'Ticket A';
     const price = 10;
 
