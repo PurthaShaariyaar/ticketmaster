@@ -13,7 +13,7 @@ describe('Databases: system tests', () => {
   });
 });
 
-describe('Successful request: integration test', () => {
+describe('Successful request: system test', () => {
   it('Returns the ticket if the ticket is found in the database.', async () => {
     const title = 'Ticket A';
     const price = 30;
