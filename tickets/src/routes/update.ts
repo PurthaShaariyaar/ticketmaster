@@ -39,7 +39,7 @@ router.put('/api/tickets/:id', requireAuth, [
   }
 
   if (ticket.orderId) {
-    throw new BadRequestError('Cannot edit a reserved ticket.');
+    throw new BadRequestError('Cannot update a ticket that is currently in order process');
   }
 
   if (ticket.userId != req.currentUser!.id) {

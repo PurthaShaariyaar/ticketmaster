@@ -7,6 +7,7 @@ import { createTicketRouter } from './routes/new';
 import { updateTicketRouter } from './routes/update';
 import { showTicketRouter } from './routes/show';
 import { indexTicketRouter } from './routes/index';
+import { deleteTicketRouter } from './routes/delete';
 
 const app = express();
 app.set('trust proxy', true);
@@ -24,6 +25,7 @@ app.use(createTicketRouter);
 app.use(updateTicketRouter);
 app.use(showTicketRouter);
 app.use(indexTicketRouter);
+app.use(deleteTicketRouter);
 
 
 app.all('*', async (req, res) => {
