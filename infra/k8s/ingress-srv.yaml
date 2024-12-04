@@ -24,6 +24,13 @@ spec:
                 name: ticketstm-srv
                 port:
                   number: 4001
+          - path: /api/orders/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: orderstm-srv
+                port:
+                  number: 4002
           - path: /?(.*)
             pathType: Prefix
             backend:
