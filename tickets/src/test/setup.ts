@@ -19,7 +19,7 @@ declare global {
   var signin: () => string[];
 }
 
-jest.mock('../nats-wrapper.ts');
+jest.mock('../nats-wrapper.ts')
 
 let mongo: any;
 
