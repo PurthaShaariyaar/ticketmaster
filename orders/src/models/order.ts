@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
-import { OrderStatus } from '@psticketmaster/common/build/events/types/order-status';
+import { OrderStatus } from '@psticketmaster/common';
 import { TicketDoc } from './ticket';
 
 export { OrderStatus }
