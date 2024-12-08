@@ -1,12 +1,14 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
+import { app } from '../app';
+import request from 'supertest';
 import jwt from 'jsonwebtoken';
 
 declare global {
   var signin: () => string[];
 }
 
-jest.mock('../nats-wrapper.ts');
+jest.mock('../nats-wrapper.ts')
 
 let mongo: any;
 
@@ -23,7 +25,7 @@ beforeEach(async () => {
 
   if (collections) {
     for (let collection of collections) {
-      await collection.deleteMany();
+      await collection.deleteMany({});
     }
   }
 });
@@ -43,8 +45,13 @@ global.signin = () => {
   };
 
   const token = jwt.sign(payload, process.env.JWT_KEY!);
+
   const session = { jwt: token };
+
   const sessionJSON = JSON.stringify(session);
+
   const base64 = Buffer.from(sessionJSON).toString('base64');
+
   return [`session=${base64}`];
 }
+
