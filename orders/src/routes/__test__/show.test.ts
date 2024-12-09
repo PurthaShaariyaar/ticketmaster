@@ -14,6 +14,30 @@ describe('Databases: system tests', () => {
       .expect(404)
   });
 
+  it('Returns a 401 error if user tries to fetch another users order.', async () => {
+    const userA = global.signin();
+    const userB = global.signin();
+
+    const ticket = Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
+      title: 'Ticket A',
+      price: 10
+    });
+    await ticket.save();
+
+    const { body: order } = await request(app)
+      .post('/api/orders')
+      .set('Cookie', userA)
+      .send({ ticketId: ticket.id })
+      .expect(201)
+
+    await request(app)
+      .get(`/api/orders/${order.id}`)
+      .set('Cookie', userB)
+      .send({})
+      .expect(401)
+  });
+
   it('Fetches the order with a status 200 OK.', async () => {
     const user = global.signin();
 
@@ -37,29 +61,5 @@ describe('Databases: system tests', () => {
       .expect(200)
 
     expect(fetchedOrder.id).toEqual(order.id);
-  });
-
-  it('Returns a 401 error if user tries to fetch another users order.', async () => {
-    const userA = global.signin();
-    const userB = global.signin();
-
-    const ticket = Ticket.build({
-      id: new mongoose.Types.ObjectId().toHexString(),
-      title: 'Ticket A',
-      price: 10
-    });
-    await ticket.save();
-
-    const { body: order } = await request(app)
-      .post('/api/orders')
-      .set('Cookie', userA)
-      .send({ ticketId: ticket.id })
-      .expect(201)
-
-    await request(app)
-      .get(`/api/orders/${order.id}`)
-      .set('Cookie', userB)
-      .send({})
-      .expect(401)
   });
 });
