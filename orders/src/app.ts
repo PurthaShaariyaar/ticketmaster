@@ -7,6 +7,7 @@ import { errorHandler, NotFoundError, currentUser } from '@psticketmaster/common
 import { newOrderRouter } from './routes/new';
 import { showOrderRouter } from './routes/show';
 import { indexOrderRouter } from './routes';
+import { deleteOrderRouter } from './routes/delete';
 
 const app = express();
 app.set('trust proxy', true);
@@ -23,6 +24,7 @@ app.use(currentUser);
 app.use(newOrderRouter);
 app.use(showOrderRouter);
 app.use(indexOrderRouter);
+app.use(deleteOrderRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
