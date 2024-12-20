@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentstm-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paymentstm
+  template:
+    metadata:
+      labels:
+        app: paymentstm
+    spec:
+      containers:
+        - name: paymentstm
+          image: purthas/paymentstm
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: MONGO_URI
+              value: 'mongodb://paymentstm-mongo-srv:27017/paymentstm'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: STRIPE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-secret
+                  key: STRIPE_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: paymentstm-srv
+spec:
+  selector:
+    app: paymentstm
+  ports:
+    - name: paymentstm
+      protocol: TCP
+      port: 4003
+      targetPort: 4003
