@@ -31,6 +31,13 @@ spec:
                 name: orderstm-srv
                 port:
                   number: 4002
+          - path: /api/payments/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: paymentstm-srv
+                port:
+                  number: 4003
           - path: /?(.*)
             pathType: Prefix
             backend:
